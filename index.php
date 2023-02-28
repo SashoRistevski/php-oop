@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
-require_once 'Transaction.php';
-require_once 'PaymentProfile.php';
-require_once 'Customer.php';
+//require_once  'app/Customer.php';
+//require_once 'app/PaymentProfile.php';
+//require_once 'app/Customer.php';
+//require_once 'app/Transaction.php';
+
+use App\Transaction;
+
+require __DIR__ . '/vendor/autoload.php';
 // Class and Object
 // chaining methods will not make sense if we need to return something, like a value not just a current instance
 
@@ -16,7 +21,7 @@ $transaction2 = (new Transaction(200, 'Transaction 2'))
     ->addTax(5)
     ->addDiscount(7);
 
-//var_dump($transaction1->getAmount(), $transaction2->getAmount()). PHP_EOL;
+var_dump($transaction1->getAmount(), $transaction2->getAmount()). PHP_EOL;
 
 // NULL SAFE
 $transaction3 = new Transaction(5,'Test');
