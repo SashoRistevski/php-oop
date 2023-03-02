@@ -4,6 +4,14 @@ declare(strict_types=1);
 use App\Transaction;
 use App\Enums\Status;
 use App\Toaster;
+use App\Field;
+use App\Text;
+use App\Boolean;
+use App\Checkbox;
+use App\Radio;
+use App\CollectionAgency;
+use App\DebtCollectionService;
+use App\Rocky;
 
 require __DIR__ . '/vendor/autoload.php';
 // Class and Object
@@ -88,7 +96,7 @@ var_dump($reflectionProperty->getValue($transaction7));
 
 //$transaction7->process();
 
-
+/*
 $toaster = new Toaster();
 $toasterPro = new \App\ToasterPro();
 
@@ -101,5 +109,22 @@ $toaster->addSlice(slice: 'bread');
 $toaster->addSlice('bread');
 $toaster->addSlice('bread');
 
-//$toaster->Toast();
+$toaster->Toast();
 $toasterPro->toastBagels();
+*/
+/*
+$fields = [
+    new \App\Text('textField'),
+    new \App\Checkbox('checkboxField'),
+    new \App\Radio('radioField'),
+];
+
+foreach ($fields as $field){
+    echo $field->render() . '<br />';
+}
+*/
+
+//$collector = new CollectionAgency();
+$service = new DebtCollectionService();
+
+echo $service->collectDebt(new \App\Terminator()). PHP_EOL;
