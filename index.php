@@ -125,6 +125,30 @@ foreach ($fields as $field){
 */
 
 //$collector = new CollectionAgency();
-$service = new DebtCollectionService();
+//$service = new DebtCollectionService();
+//
+//echo $service->collectDebt(new \App\Terminator()). PHP_EOL;
 
-echo $service->collectDebt(new \App\Terminator()). PHP_EOL;
+/*
+$classA = new \App\ClassA();
+$classB = new \App\ClassB();
+
+echo $classA->getName() . PHP_EOL; // A
+echo $classB->getName() . PHP_EOL; // B
+*/
+/* here the class and method resolving and binding happens at RUNTIME, it needs additional RUNTIME info to figure out
+on which class to call the method, in this case ClassB
+*/
+
+echo \App\ClassA::getName() . PHP_EOL; // A
+echo \App\ClassB::getName(). PHP_EOL; // A
+/* We get A A printed and this is example of early binding, this is the difference when using the SELF keyword
+instead of THIS,  it will always reference the same class, in this case ClassA because we changed the method and
+properties to static and SELF keyword does not follow inheritance like THIS */
+
+/*
+ now using the keyword STATIC::$name;
+also this is a non forwarding call, because we specify the class before the scope resolution ::
+ */
+echo \App\ClassA::getName() . PHP_EOL; // A
+echo \App\ClassB::getName(). PHP_EOL; // b
