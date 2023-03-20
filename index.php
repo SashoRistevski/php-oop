@@ -140,8 +140,8 @@ echo $classB->getName() . PHP_EOL; // B
 on which class to call the method, in this case ClassB
 */
 
-echo \App\ClassA::getName() . PHP_EOL; // A
-echo \App\ClassB::getName(). PHP_EOL; // A
+//echo \App\ClassA::getName() . PHP_EOL; // A
+//echo \App\ClassB::getName(). PHP_EOL; // A
 /* We get A A printed and this is example of early binding, this is the difference when using the SELF keyword
 instead of THIS,  it will always reference the same class, in this case ClassA because we changed the method and
 properties to static and SELF keyword does not follow inheritance like THIS */
@@ -150,5 +150,41 @@ properties to static and SELF keyword does not follow inheritance like THIS */
  now using the keyword STATIC::$name;
 also this is a non forwarding call, because we specify the class before the scope resolution ::
  */
-echo \App\ClassA::getName() . PHP_EOL; // A
-echo \App\ClassB::getName(). PHP_EOL; // b
+//echo \App\ClassA::getName() . PHP_EOL; // A
+//echo \App\ClassB::getName(). PHP_EOL; // b
+
+//var_dump(\App\ClassB::make());
+/*
+$coffeeMaker = new \App\CoffeeMaker();
+print $coffeeMaker->makeCoffee();
+
+$latteMaker = new \App\LatteMaker();
+print $latteMaker->makeCoffee();
+print $latteMaker->makeLatte();
+
+$cappuccinoMaker = new \App\CappuccinoMaker();
+print $cappuccinoMaker->makeCoffee();
+print $cappuccinoMaker->makeCappuccino();// to make available as private, in capMaker "CappuccinoTrait::makeCappuccino as public;"
+
+$allInOneCoffeeMaker = new \App\AllInOneCoffeeMaker();
+
+print $allInOneCoffeeMaker->makeCoffee();
+print $allInOneCoffeeMaker->makeLatte();
+// print $allInOneCoffeeMaker->makeOriginalLatte(); // this is called with the "LatteTrait::makeLatte as makeOriginalLatte"
+print $allInOneCoffeeMaker->makeCappuccino(); // same thing in allInOneMaker as above
+*/
+
+//\App\LatteMaker::foo();
+//echo \App\LatteMaker::$x;
+
+//\App\CoffeeMaker::$foo = 'foo';
+//\App\LatteMaker::$foo = 'bar';
+
+\App\LatteMaker::$foo = 'foo';
+\App\AllInOneCoffeeMaker::$foo = 'bar';
+
+//echo \App\CoffeeMaker::$foo . ' ' . \App\LatteMaker::$foo . PHP_EOL; // bar bar
+echo \App\LatteMaker::$foo . ' ' . \App\AllInOneCoffeeMaker::$foo . PHP_EOL; // bar bar
+
+
+
